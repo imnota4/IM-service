@@ -106,8 +106,17 @@ class FrameWrapper(tkFrame):
     def __init__(self, master):
         super().__init__(master)
 
+    def relPos(self, posx, posy):
+        self.place(relx=posx, rely=posy)
+
+    def relSize(self, width, height):
+        self.place(relwidth=width, relheight=height)
+
+    def absPos(self, xpos, ypos):
+        self.place(x=xpos, rely=ypos)
+
     def bgColor(self, r, g, b):
-        self.configure(background="#" + r + g + b)
+        self.configure(background="#" + str(r) + str(g) + str(b))
 
     def borderSize(self, size):
         self.config(borderwidth=size)
@@ -117,11 +126,11 @@ class FrameWrapper(tkFrame):
 
     # Sets the color of the highlighter when window gets keyboard focus. Note: Does not highlight from cursor focus
     def focusHighlight(self, r, g, b):
-        self.config(highlightcolor="#" + r + g + b)
+        self.config(highlightcolor="#" + str(r) + str(g) + str(b))
 
     # Sets the color of the highlighter when window loses keyboard focus.
     def unfocusHightlight(self, r, g, b):
-        self.config(highlightbackground="#" + r + g + b)
+        self.config(highlightbackground="#" + str(r) + str(g) + str(b))
 
     def highlightThickness(self, thickness):
         self.config(highlightthickness=thickness)
@@ -132,7 +141,7 @@ class FrameWrapper(tkFrame):
     def verticalPadding(self, size):
         self.config(pady=size)
 
-    def resize(self, width, height):
+    def absSize(self, width, height):
         self.configure(width=width, height=height)
 
     # style: One of the enums located in BorderStyles class

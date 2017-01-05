@@ -22,20 +22,33 @@ class ServerWindow(Frame):
         super().__init__(self.mainWindow)
         self.grid()
         self.createWindow()
-        self.resize(640, 480)
+        self.absSize(640, 640)
         self.cursor(Cursors.BOAT)
-        self.config(highlightbackground="#58f210")
 
     def createWindow(self):
-        self.textWindow = TextMenu(self)
+        self.textWindow = Frame(self)
+        self.textWindow.relPos(0, 0)
+        self.textWindow.relSize(.75, .80)
+        self.textWindow.highlightThickness(2)
+        self.textWindow.unfocusHightlight(255, 255, 255)
+        self.textWindow.focusHighlight(255, 255, 255)
+
         self.onlineWindow = Frame(self)
-        self.inputWindow = Text(self)
-        self.textWindow.config(borderwidth=2)
-        self.inputWindow.config(background="#d8d8d8", borderwidth=2)
-        self.onlineWindow.config(background="#d8d8d8", borderwidth=2)
-        self.textWindow.place(relx=0, rely=0, relheight=.8, relwidth=.75)
-        self.inputWindow.place(relx=0, rely=.8, relheight=.2, relwidth=1)
-        self.onlineWindow.place(relx=.75, rely=0, relwidth=.25, relheight=.8)
+        self.onlineWindow.borderSize(2)
+        self.onlineWindow.relPos(.75, 0)
+        self.onlineWindow.relSize(.25, .8)
+        self.onlineWindow.highlightThickness(2)
+        self.onlineWindow.unfocusHightlight(255, 255, 255)
+        self.onlineWindow.focusHighlight(255, 255, 255)
+
+        self.inputWindow = Frame(self)
+        self.inputWindow.borderSize(2)
+        self.inputWindow.relPos(0, .8)
+        self.inputWindow.relSize(1, .2)
+        self.inputWindow.highlightThickness(2)
+        self.inputWindow.unfocusHightlight(255, 255, 255)
+        self.inputWindow.focusHighlight(255, 255, 255)
+
 
 
     def startLoop(self):
