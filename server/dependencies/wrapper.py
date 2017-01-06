@@ -9,7 +9,6 @@ from tkinter import GROOVE as tkGroove
 from tkinter import SUNKEN as tkSunken
 from tkinter import RIDGE as tkRidge
 from tkinter import Label as tkLabel
-from tkinter import font as tkFont
 
 # This class is designed to separate the enums from the package itself so importing is easier
 class BorderStyles(Enum):
@@ -100,32 +99,9 @@ class CursorStyle(Enum):
     X_CURSOR = auto()
     LR_ANGLE = auto()
 
-# tkinter's way of handling fonts is extremely cumbersome and the implementation is not consistent.
-# This class is designed to fix both of these issues
-class Font():
-    def __init__(self):
-        self.family = "Times"
-        self.size = 12
-        self.bold = False
-        self.italic = False
-        self.underline = False
-        self.overstrike = False
-        self.update()
-
-    def update(self):
-        tkBold = "normal"
-        tkItalic = "roman"
-
-        if self.bold:
-            tkBold = "bold"
-        if self.italic:
-            tkItalic = "italic"
-
-        self.font = tkFont.Font(family=self.family, size=self.size, weight=tkBold, slant=tkItalic, underline=self.underline, overstrike=self.overstrike)
-
-
-
-# This class wraps the functionality within the tkinter.Frame class into easier to use functions
+# This class is designed to be used instead of the tkinter.Frame class. Changes listed below
+# [] Removed unnecessary boilerplate code needed to use certain functions
+# [] Renamed some functions to better describe their purpose
 class FrameWrapper(tkFrame):
     def __init__(self, master):
         super().__init__(master)
@@ -174,25 +150,3 @@ class FrameWrapper(tkFrame):
 
     def allowKeyboardFocus(self, bool):
         self.config(takefocus=bool)
-
-# This class wraps the functionality in the tkinter.Label class into easier to use functions.
-# This class does not currently support all functionality within the tkinter.Label class. It will be added when necessary
-class Label(tkLabel, FrameWrapper):
-    def __init__(self, master, msg):
-        super().__init__(master, text=msg)
-        self.font = Font()
-
-    def fontSize(self, size):
-        self.font.size = size
-        self.font.update()
-        self.config(font=self.font.font)
-
-    def bold(self, bool):
-        self.font.bold = bool
-        self.font.update()
-        self.config(font=self.font.font)
-
-    def underline(self, bool):
-        self.font.underline = bool
-        self.font.update()
-        self.config(font=self.font.font)
