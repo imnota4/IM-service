@@ -2,17 +2,26 @@ from dependencies.wrapper import FrameWrapper as Frame
 from tkinter import Tk as Tk
 from tkinter import Text as Text
 from dependencies.wrapper import CursorStyle as Cursors
+from dependencies.wrapper import Label
 
 
-
-class TextMenu(Frame):
+class OnlineUsersList(Frame):
     def __init__(self, master):
         super().__init__(master)
-
-    def addText(self):
+        self.relPos(.75, 0)
+        self.relSize(.25, .8)
+        self.highlightThickness(2)
+        self.unfocusHightlight(255, 255, 255)
+        self.focusHighlight(255, 255, 255)
+        self.header = Label(self, "Online users")
+        self.header.relPos(.18, 0)
+        self.header.fontSize(12)
+        self.header.bold(True)
+        self.header.underline(True)
+    def addUser(self):
         pass
 
-    def deleteText(self):
+    def removeUser(self):
         pass    
 
 
@@ -33,13 +42,8 @@ class ServerWindow(Frame):
         self.textWindow.unfocusHightlight(255, 255, 255)
         self.textWindow.focusHighlight(255, 255, 255)
 
-        self.onlineWindow = Frame(self)
-        self.onlineWindow.borderSize(2)
-        self.onlineWindow.relPos(.75, 0)
-        self.onlineWindow.relSize(.25, .8)
-        self.onlineWindow.highlightThickness(2)
-        self.onlineWindow.unfocusHightlight(255, 255, 255)
-        self.onlineWindow.focusHighlight(255, 255, 255)
+        self.onlineWindow = OnlineUsersList(self)
+
 
         self.inputWindow = Frame(self)
         self.inputWindow.borderSize(2)
