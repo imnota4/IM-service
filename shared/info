@@ -1,0 +1,1 @@
+This package contains all files needed by both the client and server to function. Rather than making multiple copies of the same file, and having to update both, a single copy will be strored here and accessed by both the client and server.
