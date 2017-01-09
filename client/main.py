@@ -1,3 +1,3 @@
-from shared.visuals import WindowHandle
+from shared.visuals import UIHandle
 
-mainWindow = WindowHandle()
+mainWindow = UIHandle()
